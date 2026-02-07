@@ -1,12 +1,12 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {articlesApi} from "../api/articles.api";
-import {UpdateTagDTO} from "@/lib/types/article";
+import {TagResponseDTO, UpdateTagDTO} from "@/lib/types/article";
 import {toast} from "sonner";
 import {getFriendlyErrorMessage} from "@/lib/utils/error-handler";
 
 const STALE_TIME = 1000 * 60 * 5; // 5 minutes
 
-export const useTags = (firmId?: string, publishedOnly = false) => {
+export const useTags = (firmId?: string, publishedOnly = false, initialData?: { content: TagResponseDTO[] }) => {
   const queryClient = useQueryClient();
 
   const { data: tagsData, isLoading: isLoadingTags } = useQuery({
@@ -16,6 +16,7 @@ export const useTags = (firmId?: string, publishedOnly = false) => {
       : articlesApi.getAllTagsByFirmId(firmId!),
     enabled: !!firmId,
     staleTime: STALE_TIME,
+    initialData,
   });
 
   const createTag = useMutation({

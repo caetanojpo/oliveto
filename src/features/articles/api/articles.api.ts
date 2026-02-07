@@ -9,7 +9,7 @@ import {
   UpdateTagDTO,
 } from "@/lib/types/article";
 
-interface PaginatedResponse<T> {
+export interface PaginatedResponse<T> {
   content: T[];
   page: {
     size: number;
