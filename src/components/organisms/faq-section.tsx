@@ -43,11 +43,11 @@ export function FaqSection() {
     <section className="py-20 bg-secondary">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-[#00FF90] text-sm tracking-wider uppercase">
+          <span className="text-primary text-sm tracking-wider uppercase">
             Dúvidas Frequentes
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 text-white">
-            Perguntas <span className="text-[#00FF90]">Frequentes</span>
+            Perguntas <span className="text-primary">Frequentes</span>
           </h2>
           <p className="text-white mt-4 max-w-2xl mx-auto">
             Tire suas principais dúvidas sobre nossos serviços de contabilidade,
@@ -59,7 +59,7 @@ export function FaqSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-gray-200 rounded-lg overflow-hidden bg-gray-50 hover:border-[#00FF90]/50 transition-colors"
+              className="border border-gray-200 rounded-lg overflow-hidden bg-gray-50 hover:border-primary/50 transition-colors"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
@@ -69,7 +69,7 @@ export function FaqSection() {
                   {faq.question}
                 </span>
                 <ChevronDown
-                  className={`w-5 h-5 text-[#00FF90] flex-shrink-0 transition-transform duration-300 ${
+                  className={`w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300 ${
                     openIndex === index ? "rotate-180" : ""
                   }`}
                 />

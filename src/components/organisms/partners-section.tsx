@@ -49,12 +49,12 @@ export function PartnersSection() {
     <section className="py-16 bg-secondary border-y border-white/10">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-10">
-          <span className="text-[#00FF90] text-sm tracking-wider uppercase">
+          <span className="text-primary text-sm tracking-wider uppercase">
             Parceiros & Instituições
           </span>
           <h2 className="text-2xl md:text-3xl font-bold mt-2">
             Trabalhamos com as{" "}
-            <span className="text-[#00FF90]">principais instituições</span>
+            <span className="text-primary">principais instituições</span>
           </h2>
         </div>
 
@@ -68,10 +68,10 @@ export function PartnersSection() {
           {doubledPartners.map((partner, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-32 h-20 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center hover:border-[#00FF90]/50 transition-colors group cursor-pointer"
+              className="flex-shrink-0 w-32 h-20 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center hover:border-primary/50 transition-colors group cursor-pointer"
             >
               <div className="text-center">
-                <span className="text-xl font-bold text-gray-400 group-hover:text-[#00FF90] transition-colors">
+                <span className="text-xl font-bold text-gray-400 group-hover:text-primary transition-colors">
                   {partner.initials}
                 </span>
                 <p className="text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">

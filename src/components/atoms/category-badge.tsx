@@ -7,13 +7,27 @@ interface CategoryBadgeProps {
 }
 
 export function CategoryBadge({ category, color, className }: CategoryBadgeProps) {
+  if (!color) {
+    return (
+      <span
+        className={cn(
+          "text-sm font-medium px-2 py-0.5 rounded-md border",
+          "text-primary bg-primary/10 border-primary/20",
+          className
+        )}
+      >
+        {category}
+      </span>
+    );
+  }
+
   return (
     <span 
-      className={cn("text-sm font-medium px-2 py-0.5 rounded-md bg-opacity-10 border border-opacity-20", className)}
+      className={cn("text-sm font-medium px-2 py-0.5 rounded-md border", className)}
       style={{
-        color: color || '#00FF90',
-        backgroundColor: color ? `${color}20` : '#00FF9020',
-        borderColor: color ? `${color}40` : '#00FF9040'
+        color: color,
+        backgroundColor: `${color}20`,
+        borderColor: `${color}40`
       }}
     >
       {category}

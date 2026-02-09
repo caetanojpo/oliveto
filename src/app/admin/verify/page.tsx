@@ -44,14 +44,14 @@ function VerifyContent() {
     <div className="max-w-md w-full bg-[#111] border border-white/10 rounded-2xl p-8 text-center space-y-6">
       {!isPending && !isSuccess && !isError && (
         <>
-          <ShieldCheck className="w-16 h-16 text-[#00FF90] mx-auto" />
+          <ShieldCheck className="w-16 h-16 text-primary mx-auto" />
           <h1 className="text-2xl font-bold">Verificar Conta</h1>
           <p className="text-gray-400">
             Clique no botão abaixo para confirmar seu cadastro e ativar sua conta.
           </p>
           <button
             onClick={handleVerify}
-            className="w-full py-3 bg-[#00FF90] text-black font-semibold rounded-xl hover:bg-[#00FF90]/90 transition-colors cursor-pointer"
+            className="w-full py-3 bg-primary text-black font-semibold rounded-xl hover:bg-primary/90 transition-colors cursor-pointer"
           >
             Verificar Conta
           </button>
@@ -60,7 +60,7 @@ function VerifyContent() {
 
       {isPending && (
         <>
-          <Loader2 className="w-16 h-16 text-[#00FF90] animate-spin mx-auto" />
+          <Loader2 className="w-16 h-16 text-primary animate-spin mx-auto" />
           <h1 className="text-2xl font-bold">Verificando...</h1>
           <p className="text-gray-400">
             Aguarde enquanto confirmamos seu cadastro.
@@ -70,7 +70,7 @@ function VerifyContent() {
 
       {isSuccess && (
         <>
-          <CheckCircle2 className="w-16 h-16 text-[#00FF90] mx-auto" />
+          <CheckCircle2 className="w-16 h-16 text-primary mx-auto" />
           <h1 className="text-2xl font-bold">Conta Verificada!</h1>
           <p className="text-gray-400">
             Seu cadastro foi confirmado com sucesso. Você já pode acessar o
@@ -78,7 +78,7 @@ function VerifyContent() {
           </p>
           <button
             onClick={() => router.push(ROUTES.ADMIN.DASHBOARD.HOME)}
-            className="w-full py-3 bg-[#00FF90] text-black font-semibold rounded-xl hover:bg-[#00FF90]/90 transition-colors"
+            className="w-full py-3 bg-primary text-black font-semibold rounded-xl hover:bg-primary/90 transition-colors"
           >
             Acessar Dashboard
           </button>
@@ -112,7 +112,7 @@ export default function VerifyPage() {
         <Image src={IMAGES.LOGO} alt="Logo" width={150} height={150} />
       </div>
       
-      <Suspense fallback={<Loader2 className="w-10 h-10 text-[#00FF90] animate-spin" />}>
+      <Suspense fallback={<Loader2 className="w-10 h-10 text-primary animate-spin" />}>
         <VerifyContent />
       </Suspense>
     </div>

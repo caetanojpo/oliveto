@@ -22,8 +22,8 @@ export function AnalyticsCard({
   isLoading,
   className,
   trend,
-  iconClassName = "text-[#00FF90] bg-[#00FF90]/10",
-  trendClassName = "text-[#00FF90] bg-[#00FF90]/10",
+  iconClassName = "text-primary bg-primary/10",
+  trendClassName = "text-primary bg-primary/10",
 }: AnalyticsCardProps) {
   if (isLoading) {
     return (
@@ -39,7 +39,7 @@ export function AnalyticsCard({
   }
 
   return (
-    <div className={cn("bg-[#111111] border border-white/10 rounded-2xl p-6 hover:border-[#00FF90]/30 transition-colors", className)}>
+    <div className={cn("bg-[#111111] border border-white/10 rounded-2xl p-6 hover:border-primary/30 transition-colors", className)}>
       <div className="flex items-center justify-between mb-4">
         <div className={cn("p-3 rounded-xl", iconClassName)}>
           <Icon className="w-6 h-6" />

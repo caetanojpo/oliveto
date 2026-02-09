@@ -72,7 +72,7 @@ export function TagForm({ onSubmit, isPending, initialData, onCancel }: TagFormP
             type="text"
             {...register("name")}
             placeholder="Ex: Tributário, Agro, Notícias..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-lg font-medium placeholder:text-neutral-600 focus:outline-none focus:border-[#00FF90]/50 transition-colors"
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-lg font-medium placeholder:text-neutral-600 focus:outline-none focus:border-primary/50 transition-colors"
             maxLength={100}
           />
           {errors.name && (
@@ -88,7 +88,7 @@ export function TagForm({ onSubmit, isPending, initialData, onCancel }: TagFormP
             {...register("description")}
             placeholder="Breve descrição sobre a tag..."
             rows={3}
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 placeholder:text-neutral-600 focus:outline-none focus:border-[#00FF90]/50 transition-colors resize-none"
+            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 placeholder:text-neutral-600 focus:outline-none focus:border-primary/50 transition-colors resize-none"
             maxLength={500}
           />
         </div>
@@ -108,7 +108,7 @@ export function TagForm({ onSubmit, isPending, initialData, onCancel }: TagFormP
               type="text"
               {...register("color")}
               placeholder="#000000"
-              className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 placeholder:text-neutral-600 focus:outline-none focus:border-[#00FF90]/50 transition-colors uppercase"
+              className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 placeholder:text-neutral-600 focus:outline-none focus:border-primary/50 transition-colors uppercase"
               maxLength={7}
             />
           </div>
@@ -122,7 +122,7 @@ export function TagForm({ onSubmit, isPending, initialData, onCancel }: TagFormP
             type="button"
             onClick={handleSubmit(onSubmit)}
             disabled={isPending}
-            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#00FF90] text-black font-medium rounded-xl hover:bg-[#00FF90]/90 transition-colors disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary text-black font-medium rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             {initialData ? "Salvar Alterações" : "Criar Tag"}

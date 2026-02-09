@@ -57,7 +57,7 @@ export const getLeadsColumns = ({
           variant={isRead ? "secondary" : "default"}
           className={
             !isRead
-              ? "bg-[#00FF90] text-black hover:bg-[#00FF90]/90 font-bold"
+              ? "bg-primary text-black hover:bg-primary/90 font-bold"
               : "bg-neutral-800 text-neutral-400 hover:bg-neutral-800/90"
           }
         >
@@ -75,7 +75,7 @@ export const getLeadsColumns = ({
           variant="ghost"
           size="icon-sm"
           onClick={() => onViewDetails(lead)}
-          className="text-[#00FF90] hover:text-[#00FF90] hover:bg-[#00FF90]/10 cursor-pointer"
+          className="text-primary hover:text-primary hover:bg-primary/10 cursor-pointer"
           aria-label="Ver detalhes"
         >
           <Eye className="w-4 h-4" />

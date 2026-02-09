@@ -7,7 +7,7 @@ interface FounderProfileProps {
 export function FounderProfile({ founder }: FounderProfileProps) {
   return (
     <div>
-      <h3 className="text-xl md:text-2xl font-bold text-[#00FF90] mb-2">
+      <h3 className="text-xl md:text-2xl font-bold text-primary mb-2">
         {founder.name}
       </h3>
       <p className="text-sm text-gray-400 mb-4">{founder.role}</p>

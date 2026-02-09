@@ -40,7 +40,7 @@ export default function SobrePage() {
 
               {/* Right column - Manifesto */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-[#00FF90] mb-6">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">
                   {sobrePageContent.manifestoTitle}
                 </h2>
                 <div className="space-y-4 text-sm md:text-base text-gray-300 leading-relaxed">

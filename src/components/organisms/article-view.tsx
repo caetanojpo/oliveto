@@ -39,7 +39,7 @@ export function ArticleView({ article, onBack }: ArticleViewProps) {
             <span
               className={`${
                 article.status === ArticleStatus.PUBLISHED
-                  ? "text-[#00FF90]"
+                  ? "text-primary"
                   : "text-amber-400"
               }`}
             >
@@ -57,7 +57,7 @@ export function ArticleView({ article, onBack }: ArticleViewProps) {
               {article.tags.map((tag) => (
                 <span
                   key={tag.id}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-[#00FF90]/10 text-[#00FF90] border border-[#00FF90]/20"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20"
                 >
                   <Tag className="w-3 h-3" />
                   {tag.name}

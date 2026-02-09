@@ -32,7 +32,7 @@ export function LeadsTable({
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64 border border-white/10 rounded-xl bg-white/5">
-        <Loader2 className="w-8 h-8 animate-spin text-[#00FF90]" />
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }

@@ -60,7 +60,7 @@ export function ArticlesCarousel() {
     return (
       <section className="py-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-center">
-          <Loader2 className="w-8 h-8 text-[#00FF90] animate-spin" />
+          <Loader2 className="w-8 h-8 text-primary animate-spin" />
         </div>
       </section>
     );
@@ -81,7 +81,7 @@ export function ArticlesCarousel() {
             </span>
             <h2 className="text-3xl md:text-4xl font-light text-white mt-2">
               {articlesCarouselContent.title}
-              <span className="text-[#00FF90]">
+              <span className="text-primary">
                 {articlesCarouselContent.titleHighlight}
               </span>
             </h2>
@@ -96,7 +96,7 @@ export function ArticlesCarousel() {
                     prevSlide();
                     setIsAutoPlaying(false);
                   }}
-                  className="p-3 border border-neutral-700 hover:border-[#00FF90] hover:text-[#00FF90] transition-colors  cursor-pointer"
+                  className="p-3 border border-neutral-700 hover:border-primary hover:text-primary transition-colors  cursor-pointer"
                   aria-label={articlesCarouselContent.prevButtonLabel}
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -106,7 +106,7 @@ export function ArticlesCarousel() {
                     nextSlide();
                     setIsAutoPlaying(false);
                   }}
-                  className="p-3 border border-neutral-700 hover:border-[#00FF90] hover:text-[#00FF90] transition-colors  cursor-pointer"
+                  className="p-3 border border-neutral-700 hover:border-primary hover:text-primary transition-colors  cursor-pointer"
                   aria-label={articlesCarouselContent.nextButtonLabel}
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -117,7 +117,7 @@ export function ArticlesCarousel() {
             {/* Ver todos */}
             <Link
               href={articlesCarouselContent.viewAllHref}
-              className="hidden md:flex items-center gap-2 text-sm text-neutral-400 hover:text-[#00FF90] transition-colors group"
+              className="hidden md:flex items-center gap-2 text-sm text-neutral-400 hover:text-primary transition-colors group"
             >
               {articlesCarouselContent.viewAllText}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -159,7 +159,7 @@ export function ArticlesCarousel() {
                 }}
                 className={`h-1 transition-all duration-300 cursor-pointer ${
                   index === currentIndex
-                    ? "w-8 bg-[#00FF90]"
+                    ? "w-8 bg-primary"
                     : "w-4 bg-neutral-700 hover:bg-neutral-600"
                 }`}
                 aria-label={`Ir para slide ${index + 1}`}
@@ -172,7 +172,7 @@ export function ArticlesCarousel() {
         <div className="flex justify-center mt-8 md:hidden">
           <Link
             href={articlesCarouselContent.viewAllHref}
-            className="flex items-center gap-2 text-sm border border-neutral-700 px-6 py-3 hover:border-[#00FF90] hover:text-[#00FF90] transition-colors"
+            className="flex items-center gap-2 text-sm border border-neutral-700 px-6 py-3 hover:border-primary hover:text-primary transition-colors"
           >
             {articlesCarouselContent.viewAllButtonText}
             <ArrowRight className="w-4 h-4" />

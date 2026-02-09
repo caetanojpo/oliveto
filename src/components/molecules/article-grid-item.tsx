@@ -70,7 +70,7 @@ export const ArticleGridItem = memo(function ArticleGridItem({ article, tagsMap 
       </div>
 
       <Link href={`/artigos/${article.id}`} className="cursor-pointer block">
-        <p className="text-sm text-white mt-1 leading-relaxed group-hover:text-[#00FF90] transition-colors">
+        <p className="text-sm text-white mt-1 leading-relaxed group-hover:text-primary transition-colors">
           {article.title}
         </p>
       </Link>

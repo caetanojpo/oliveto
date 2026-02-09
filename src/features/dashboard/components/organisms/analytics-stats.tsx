@@ -17,8 +17,8 @@ export function AnalyticsStats({ stats, isLoading }: AnalyticsStatsProps) {
         description="Leads capturados"
         isLoading={isLoading}
         trend="+2 este mês"
-        iconClassName="bg-[#00FF90]/10 text-[#00FF90]"
-        trendClassName="text-[#00FF90] bg-[#00FF90]/10"
+        iconClassName="bg-primary/10 text-primary"
+        trendClassName="text-primary bg-primary/10"
       />
       <AnalyticsCard
         title="Novas Mensagens"

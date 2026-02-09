@@ -23,6 +23,7 @@ import {
 import { useState, useEffect } from "react";
 import { TiptapEditor } from "@/components/molecules/tiptap-editor";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface ArticleFormProps {
   onSubmit: (data: CreateArticleDTO) => void;
@@ -150,7 +151,7 @@ export function ArticleForm({
               {...register("title")}
               disabled={readOnly}
               placeholder="Digite o título do artigo..."
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-lg font-medium placeholder:text-neutral-600 focus:outline-none focus:border-[#00FF90]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-lg font-medium placeholder:text-neutral-600 focus:outline-none focus:border-primary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               maxLength={255}
             />
             {errors.title && (
@@ -170,7 +171,7 @@ export function ArticleForm({
               disabled={readOnly}
               placeholder="Uma breve descrição que aparecerá na listagem de artigos..."
               rows={3}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 placeholder:text-neutral-600 focus:outline-none focus:border-[#00FF90]/50 transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 placeholder:text-neutral-600 focus:outline-none focus:border-primary/50 transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
               maxLength={500}
             />
           </div>
@@ -227,7 +228,7 @@ export function ArticleForm({
                           type="button"
                           onClick={() => handleFormSubmit(ArticleStatus.PUBLISHED)}
                           disabled={isPending}
-                          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#00FF90] text-black font-medium rounded-xl hover:bg-[#00FF90]/90 transition-colors disabled:opacity-50"
+                          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary text-black font-medium rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
                         >
                           <Save className="w-4 h-4" />
                           Salvar Alterações
@@ -248,7 +249,7 @@ export function ArticleForm({
                           type="button"
                           onClick={() => handleFormSubmit(ArticleStatus.PUBLISHED)}
                           disabled={isPending}
-                          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#00FF90] text-black font-medium rounded-xl hover:bg-[#00FF90]/90 transition-colors disabled:opacity-50"
+                          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary text-black font-medium rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
                         >
                           <Send className="w-4 h-4" />
                           Publicar Artigo
@@ -277,7 +278,7 @@ export function ArticleForm({
           {/* Category / Tags */}
           <div className="bg-[#111111] border border-white/10 rounded-2xl p-6">
             <h3 className="font-semibold mb-4 flex items-center gap-2">
-              <Tag className="w-4 h-4 text-[#00FF90]" />
+              <Tag className="w-4 h-4 text-primary" />
               Tags
             </h3>
             
@@ -287,12 +288,15 @@ export function ArticleForm({
                 {getSelectedTags().map(tag => (
                   <span 
                     key={tag.id}
-                    className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium border"
-                    style={{
-                      backgroundColor: tag.color ? `${tag.color}20` : '#00FF9020',
-                      color: tag.color || '#00FF90',
-                      borderColor: tag.color ? `${tag.color}40` : '#00FF9040'
-                    }}
+                    className={cn(
+                      "inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium border",
+                      !tag.color && "bg-primary/10 text-primary border-primary/20"
+                    )}
+                    style={tag.color ? {
+                      backgroundColor: `${tag.color}20`,
+                      color: tag.color,
+                      borderColor: `${tag.color}40`
+                    } : undefined}
                   >
                     {tag.name}
                     {!readOnly && (
@@ -340,15 +344,16 @@ export function ArticleForm({
                             toggleTag(tag.id);
                             // Don't close dropdown to allow multiple selection
                           }}
-                          className={`w-full px-4 py-3 text-left hover:bg-white/5 transition-colors text-sm flex items-center justify-between ${
-                            selectedTagIds.includes(tag.id) ? "text-[#00FF90]" : "text-white"
-                          }`}
+                          className={cn(
+                            "w-full px-4 py-3 text-left hover:bg-white/5 transition-colors text-sm flex items-center justify-between",
+                            selectedTagIds.includes(tag.id) ? "text-primary" : "text-white"
+                          )}
                         >
                           <span style={{ color: tag.color || undefined }}>{tag.name}</span>
                           {selectedTagIds.includes(tag.id) && (
                             <span 
-                              className="w-2 h-2 rounded-full" 
-                              style={{ backgroundColor: tag.color || '#00FF90' }}
+                              className={cn("w-2 h-2 rounded-full", !tag.color && "bg-primary")}
+                              style={tag.color ? { backgroundColor: tag.color } : undefined}
                             />
                           )}
                         </button>
@@ -363,7 +368,7 @@ export function ArticleForm({
           {/* Cover Image */}
           <div className="bg-[#111111] border border-white/10 rounded-2xl p-6">
             <h3 className="font-semibold mb-4 flex items-center gap-2">
-              <ImageIcon className="w-4 h-4 text-[#00FF90]" />
+              <ImageIcon className="w-4 h-4 text-primary" />
               Imagem de Capa (URL)
             </h3>
             <input
@@ -371,7 +376,7 @@ export function ArticleForm({
               {...register("imageUrl")}
               disabled={readOnly}
               placeholder="https://exemplo.com/imagem.jpg"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder:text-neutral-600 focus:outline-none focus:border-[#00FF90]/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-4"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder:text-neutral-600 focus:outline-none focus:border-primary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-4"
               maxLength={2048}
             />
             {errors.imageUrl && (
@@ -400,14 +405,14 @@ export function ArticleForm({
           {/* Author */}
           <div className="bg-[#111111] border border-white/10 rounded-2xl p-6">
             <h3 className="font-semibold mb-4 flex items-center gap-2">
-              <User className="w-4 h-4 text-[#00FF90]" />
+              <User className="w-4 h-4 text-primary" />
               Autor
             </h3>
             <input
               type="text"
               disabled
               value={currentAuthorName}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 placeholder:text-neutral-600 focus:outline-none focus:border-[#00FF90]/50 transition-colors opacity-50 cursor-not-allowed"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 placeholder:text-neutral-600 focus:outline-none focus:border-primary/50 transition-colors opacity-50 cursor-not-allowed"
             />
           </div>
         </div>

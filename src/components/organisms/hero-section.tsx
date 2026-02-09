@@ -42,7 +42,7 @@ export function HeroSection() {
         <div className="min-h-[120px] md:min-h-[140px] flex items-center justify-center">
           <h1 className="text-2xl md:text-4xl font-light leading-tight">
             <ScrambleText text={slide.prefix} duration={1500} />{" "}
-            <span className="text-[#00FF90] font-medium">
+            <span className="text-primary font-medium">
               <ScrambleText
                 text={slide.highlight}
                 duration={2000}

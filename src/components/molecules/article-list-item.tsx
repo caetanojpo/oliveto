@@ -26,7 +26,7 @@ export const ArticleListItem = memo(function ArticleListItem({ article, onView, 
       <td className="px-6 py-4">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/5 rounded-lg">
-            <Newspaper className="w-5 h-5 text-[#00FF90]" />
+            <Newspaper className="w-5 h-5 text-primary" />
           </div>
           <span className="font-medium max-w-xs truncate text-white">
             {article.title}
@@ -35,7 +35,7 @@ export const ArticleListItem = memo(function ArticleListItem({ article, onView, 
       </td>
       <td className="px-6 py-4">
         {article.status === ArticleStatus.PUBLISHED ? (
-          <span className="text-xs text-[#00FF90] bg-[#00FF90]/10 px-3 py-1 rounded-full">
+          <span className="text-xs text-primary bg-primary/10 px-3 py-1 rounded-full">
             Publicado
           </span>
         ) : (

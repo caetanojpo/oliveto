@@ -56,7 +56,7 @@ export function ArticlesInsight({ articles, isLoading }: ArticlesInsightProps) {
         <p className="text-neutral-400 mb-6 max-w-md mx-auto">
           Comece a publicar conteúdo para ver métricas de performance aqui.
         </p>
-        <Button className="bg-[#00FF90] text-black hover:bg-[#00dd00]">
+        <Button className="bg-primary text-black hover:bg-primary/90">
           <Plus className="mr-2 h-4 w-4" />
           Criar Artigo
         </Button>

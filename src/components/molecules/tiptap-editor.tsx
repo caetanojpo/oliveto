@@ -3,6 +3,8 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
+import Image from "@tiptap/extension-image";
+import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
 import Placeholder from "@tiptap/extension-placeholder";
 import {
@@ -13,8 +15,6 @@ import {
   List,
   ListOrdered,
   Quote,
-  Undo,
-  Redo,
   AlignLeft,
   AlignCenter,
   AlignRight,
@@ -22,57 +22,48 @@ import {
   Heading1,
   Heading2,
   Heading3,
+  ImageIcon,
+  Link as LinkIcon,
+  Undo,
+  Redo,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect } from "react";
 
 interface TiptapEditorProps {
   content: string;
-  onChange?: (content: string) => void;
-  placeholder?: string;
+  onChange: (content: string) => void;
   readOnly?: boolean;
 }
 
 export function TiptapEditor({
   content,
   onChange,
-  placeholder = "Escreva o conteúdo aqui...",
   readOnly = false,
 }: TiptapEditorProps) {
   const editor = useEditor({
-    editable: !readOnly,
     extensions: [
-      StarterKit.configure({
-        heading: {
-          levels: [1, 2, 3],
-        },
-        orderedList: {
-          keepMarks: true,
-          keepAttributes: false,
-        },
-        bulletList: {
-          keepMarks: true,
-          keepAttributes: false,
-        },
-      }),
+      StarterKit,
       Underline,
+      Image,
+      Link.configure({
+        openOnClick: false,
+      }),
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
       Placeholder.configure({
-        placeholder,
+        placeholder: "Comece a escrever seu artigo...",
       }),
     ],
     content,
     onUpdate: ({ editor }) => {
-      onChange?.(editor.getHTML());
+      onChange(editor.getHTML());
     },
     editorProps: {
       attributes: {
-        class: cn(
-          "prose prose-invert max-w-none focus:outline-none min-h-[300px] px-6 py-4",
-          readOnly && "cursor-default"
-        ),
+        class:
+          "prose prose-invert max-w-none focus:outline-none min-h-[300px] p-4",
       },
     },
   });
@@ -133,7 +124,7 @@ export function TiptapEditor({
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
                 editor.isActive("heading", { level: 1 }) &&
-                  "bg-white/20 text-[#00FF90]"
+                  "bg-white/20 text-primary"
               )}
               title="Título 1"
             >
@@ -147,7 +138,7 @@ export function TiptapEditor({
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
                 editor.isActive("heading", { level: 2 }) &&
-                  "bg-white/20 text-[#00FF90]"
+                  "bg-white/20 text-primary"
               )}
               title="Título 2"
             >
@@ -161,7 +152,7 @@ export function TiptapEditor({
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
                 editor.isActive("heading", { level: 3 }) &&
-                  "bg-white/20 text-[#00FF90]"
+                  "bg-white/20 text-primary"
               )}
               title="Título 3"
             >
@@ -175,7 +166,7 @@ export function TiptapEditor({
               onClick={() => editor.chain().focus().toggleBold().run()}
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
-                editor.isActive("bold") && "bg-white/20 text-[#00FF90]"
+                editor.isActive("bold") && "bg-white/20 text-primary"
               )}
               title="Negrito"
             >
@@ -186,7 +177,7 @@ export function TiptapEditor({
               onClick={() => editor.chain().focus().toggleItalic().run()}
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
-                editor.isActive("italic") && "bg-white/20 text-[#00FF90]"
+                editor.isActive("italic") && "bg-white/20 text-primary"
               )}
               title="Itálico"
             >
@@ -197,7 +188,7 @@ export function TiptapEditor({
               onClick={() => editor.chain().focus().toggleUnderline().run()}
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
-                editor.isActive("underline") && "bg-white/20 text-[#00FF90]"
+                editor.isActive("underline") && "bg-white/20 text-primary"
               )}
               title="Sublinhado"
             >
@@ -208,7 +199,7 @@ export function TiptapEditor({
               onClick={() => editor.chain().focus().toggleStrike().run()}
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
-                editor.isActive("strike") && "bg-white/20 text-[#00FF90]"
+                editor.isActive("strike") && "bg-white/20 text-primary"
               )}
               title="Tachado"
             >
@@ -223,7 +214,7 @@ export function TiptapEditor({
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
                 editor.isActive({ textAlign: "left" }) &&
-                  "bg-white/20 text-[#00FF90]"
+                  "bg-white/20 text-primary"
               )}
               title="Alinhar à Esquerda"
             >
@@ -235,7 +226,7 @@ export function TiptapEditor({
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
                 editor.isActive({ textAlign: "center" }) &&
-                  "bg-white/20 text-[#00FF90]"
+                  "bg-white/20 text-primary"
               )}
               title="Centralizar"
             >
@@ -247,7 +238,7 @@ export function TiptapEditor({
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
                 editor.isActive({ textAlign: "right" }) &&
-                  "bg-white/20 text-[#00FF90]"
+                  "bg-white/20 text-primary"
               )}
               title="Alinhar à Direita"
             >
@@ -259,7 +250,7 @@ export function TiptapEditor({
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
                 editor.isActive({ textAlign: "justify" }) &&
-                  "bg-white/20 text-[#00FF90]"
+                  "bg-white/20 text-primary"
               )}
               title="Justificar"
             >
@@ -273,7 +264,7 @@ export function TiptapEditor({
               onClick={() => editor.chain().focus().toggleBulletList().run()}
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
-                editor.isActive("bulletList") && "bg-white/20 text-[#00FF90]"
+                editor.isActive("bulletList") && "bg-white/20 text-primary"
               )}
               title="Lista com Marcadores"
             >
@@ -284,7 +275,7 @@ export function TiptapEditor({
               onClick={() => editor.chain().focus().toggleOrderedList().run()}
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
-                editor.isActive("orderedList") && "bg-white/20 text-[#00FF90]"
+                editor.isActive("orderedList") && "bg-white/20 text-primary"
               )}
               title="Lista Numerada"
             >
@@ -298,7 +289,7 @@ export function TiptapEditor({
               onClick={() => editor.chain().focus().toggleBlockquote().run()}
               className={cn(
                 "p-2 hover:bg-white/10 rounded-lg transition-colors",
-                editor.isActive("blockquote") && "bg-white/20 text-[#00FF90]"
+                editor.isActive("blockquote") && "bg-white/20 text-primary"
               )}
               title="Citação"
             >
@@ -313,7 +304,7 @@ export function TiptapEditor({
 
       <style jsx global>{`
         .ProseMirror blockquote {
-          border-left: 3px solid #00ff90;
+          border-left: 3px solid var(--primary);
           padding-left: 1rem;
           margin-left: 0;
           margin-right: 0;

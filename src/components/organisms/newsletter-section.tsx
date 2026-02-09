@@ -44,22 +44,22 @@ export function NewsletterSection() {
   return (
     <section className="py-20 bg-black">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="relative bg-gradient-to-br from-[#00FF90]/10 to-transparent border border-[#00FF90]/30 rounded-2xl p-8 md:p-12 overflow-hidden">
+        <div className="relative bg-gradient-to-br from-primary/10 to-transparent border border-primary/30 rounded-2xl p-8 md:p-12 overflow-hidden">
           {/* Background decoration */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#00FF90]/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#00FF90]/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
 
           <div className="relative grid md:grid-cols-2 gap-8 items-center">
             {/* Content */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#00FF90]/20 text-[#00FF90] text-sm px-3 py-1 rounded-full mb-4">
+              <div className="inline-flex items-center gap-2 bg-primary/20 text-primary text-sm px-3 py-1 rounded-full mb-4">
                 <FileText className="w-4 h-4" />
                 E-book Gratuito
               </div>
 
               <h2 className="text-2xl md:text-3xl font-bold mb-4">
                 Guia Completo de{" "}
-                <span className="text-[#00FF90]">Recuperação Tributária</span>
+                <span className="text-primary">Recuperação Tributária</span>
               </h2>
 
               <p className="text-gray-400 mb-6">
@@ -70,15 +70,15 @@ export function NewsletterSection() {
 
               <ul className="space-y-2 text-sm text-gray-300">
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#00FF90]" />
+                  <CheckCircle className="w-4 h-4 text-primary" />
                   Análise de tributos pagos a maior
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#00FF90]" />
+                  <CheckCircle className="w-4 h-4 text-primary" />
                   Passo a passo para solicitar restituição
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#00FF90]" />
+                  <CheckCircle className="w-4 h-4 text-primary" />
                   Casos reais de recuperação
                 </li>
               </ul>
@@ -100,7 +100,7 @@ export function NewsletterSection() {
                             <Input
                               placeholder="Seu nome"
                               maxLength={100}
-                              className="w-full bg-white/5 border-white/10 rounded-lg px-4 py-3 h-auto text-white placeholder:text-gray-500 focus-visible:ring-0 focus-visible:border-[#00FF90]/50 transition-colors"
+                              className="w-full bg-white/5 border-white/10 rounded-lg px-4 py-3 h-auto text-white placeholder:text-gray-500 focus-visible:ring-0 focus-visible:border-primary/50 transition-colors"
                               {...field}
                             />
                           </FormControl>
@@ -120,7 +120,7 @@ export function NewsletterSection() {
                               type="email"
                               placeholder="seu@email.com"
                               maxLength={100}
-                              className="w-full bg-white/5 border-white/10 rounded-lg px-4 py-3 h-auto text-white placeholder:text-gray-500 focus-visible:ring-0 focus-visible:border-[#00FF90]/50 transition-colors"
+                              className="w-full bg-white/5 border-white/10 rounded-lg px-4 py-3 h-auto text-white placeholder:text-gray-500 focus-visible:ring-0 focus-visible:border-primary/50 transition-colors"
                               {...field}
                             />
                           </FormControl>
@@ -140,7 +140,7 @@ export function NewsletterSection() {
                               type="tel"
                               placeholder="(00) 00000-0000"
                               maxLength={20}
-                              className="w-full bg-white/5 border-white/10 rounded-lg px-4 py-3 h-auto text-white placeholder:text-gray-500 focus-visible:ring-0 focus-visible:border-[#00FF90]/50 transition-colors"
+                              className="w-full bg-white/5 border-white/10 rounded-lg px-4 py-3 h-auto text-white placeholder:text-gray-500 focus-visible:ring-0 focus-visible:border-primary/50 transition-colors"
                               {...field}
                             />
                           </FormControl>
@@ -152,7 +152,7 @@ export function NewsletterSection() {
                     <button
                       type="submit"
                       disabled={isPending}
-                      className="w-full bg-[#00FF90] text-black font-semibold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-[#00FF90]/90 transition-colors disabled:opacity-50"
+                      className="w-full bg-primary text-black font-semibold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors disabled:opacity-50"
                     >
                       {isPending ? (
                         "Enviando..."
@@ -172,8 +172,8 @@ export function NewsletterSection() {
                 </Form>
               ) : (
                 <div className="text-center py-8">
-                  <div className="w-16 h-16 bg-[#00FF90]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-8 h-8 text-[#00FF90]" />
+                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">
                     Cadastro Realizado!

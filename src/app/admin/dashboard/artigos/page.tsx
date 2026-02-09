@@ -176,7 +176,7 @@ export default function ArtigosPage() {
             onClick={() => setActiveTab("list")}
             className={`px-6 py-3 rounded-xl font-medium transition-all ${
               activeTab === "list"
-                ? "bg-[#00FF90] text-black"
+                ? "bg-primary text-black"
                 : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
             }`}
           >
@@ -186,7 +186,7 @@ export default function ArtigosPage() {
             onClick={() => setActiveTab("tags")}
             className={`px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 ${
               activeTab === "tags"
-                ? "bg-[#00FF90] text-black"
+                ? "bg-primary text-black"
                 : "bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white"
             }`}
           >
@@ -202,7 +202,7 @@ export default function ArtigosPage() {
           <div className="flex justify-end">
             <button
               onClick={() => setActiveTab("create")}
-              className="flex items-center gap-2 px-4 py-2 bg-[#00FF90] text-black font-medium rounded-xl hover:bg-[#00FF90]/90 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-black font-medium rounded-xl hover:bg-primary/90 transition-colors"
             >
               <Plus className="w-4 h-4" />
               Novo Artigo
@@ -232,7 +232,7 @@ export default function ArtigosPage() {
       {activeTab === "view" && (
         isLoadingFullArticle ? (
           <div className="flex items-center justify-center h-64">
-            <Loader2 className="w-8 h-8 text-[#00FF90] animate-spin" />
+            <Loader2 className="w-8 h-8 text-primary animate-spin" />
           </div>
         ) : fullArticle ? (
           <ArticleForm
@@ -255,7 +255,7 @@ export default function ArtigosPage() {
       {activeTab === "edit" && (
         isLoadingFullArticle ? (
           <div className="flex items-center justify-center h-64">
-            <Loader2 className="w-8 h-8 text-[#00FF90] animate-spin" />
+            <Loader2 className="w-8 h-8 text-primary animate-spin" />
           </div>
         ) : fullArticle ? (
           <ArticleForm
@@ -279,7 +279,7 @@ export default function ArtigosPage() {
           <div className="flex justify-end">
             <button
               onClick={() => setActiveTab("create-tag")}
-              className="flex items-center gap-2 px-4 py-2 bg-[#00FF90] text-black font-medium rounded-xl hover:bg-[#00FF90]/90 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-primary text-black font-medium rounded-xl hover:bg-primary/90 transition-colors"
             >
               <Plus className="w-4 h-4" />
               Nova Tag

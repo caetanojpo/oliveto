@@ -44,7 +44,7 @@ function AnimatedCounter({
   }, [inView, value]);
 
   return (
-    <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#00FF90]">
+    <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
       {prefix}
       {count.toLocaleString("pt-BR")}
       {suffix}
@@ -77,11 +77,11 @@ export function StatsSection() {
     <section ref={ref} className="py-20 bg-[#0a0a0a] border-y border-white/10">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-[#00FF90] text-sm tracking-wider uppercase">
+          <span className="text-primary text-sm tracking-wider uppercase">
             Nossos Números
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">
-            Resultados que <span className="text-[#00FF90]">falam por si</span>
+            Resultados que <span className="text-primary">falam por si</span>
           </h2>
         </div>
 
@@ -89,7 +89,7 @@ export function StatsSection() {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="text-center p-6 rounded-lg bg-white/5 border border-white/10 hover:border-[#00FF90]/30 transition-colors"
+              className="text-center p-6 rounded-lg bg-white/5 border border-white/10 hover:border-primary/30 transition-colors"
             >
               <AnimatedCounter
                 value={stat.value}

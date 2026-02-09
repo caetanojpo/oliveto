@@ -11,7 +11,7 @@ export function ArticlePerformanceCard({ article }: ArticlePerformanceCardProps)
   const isPublished = article.status === "PUBLISHED";
 
   return (
-    <div className="group bg-[#111111] border border-white/10 rounded-2xl overflow-hidden hover:border-[#00FF90]/30 transition-all duration-300">
+    <div className="group bg-[#111111] border border-white/10 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300">
       <div className="relative aspect-video w-full overflow-hidden bg-neutral-900">
         {article.imageUrl ? (
           <Image
@@ -30,7 +30,7 @@ export function ArticlePerformanceCard({ article }: ArticlePerformanceCardProps)
           <span className={cn(
             "text-xs px-2 py-1 rounded-full backdrop-blur-md font-medium",
             isPublished 
-              ? "bg-[#00FF90]/90 text-black" 
+              ? "bg-primary/90 text-black"
               : "bg-white/10 text-white"
           )}>
             {isPublished ? "Publicado" : "Rascunho"}
@@ -40,7 +40,7 @@ export function ArticlePerformanceCard({ article }: ArticlePerformanceCardProps)
 
       <div className="flex flex-col gap-3 p-4">
         <div className="space-y-1">
-          <h3 className="line-clamp-1 font-semibold text-white group-hover:text-[#00FF90] transition-colors">
+          <h3 className="line-clamp-1 font-semibold text-white group-hover:text-primary transition-colors">
             {article.title}
           </h3>
           <p className="line-clamp-2 text-xs text-neutral-400">
@@ -50,11 +50,11 @@ export function ArticlePerformanceCard({ article }: ArticlePerformanceCardProps)
 
         <div className="mt-auto flex items-center gap-4 text-xs text-neutral-500 pt-2 border-t border-white/5">
           <div className="flex items-center gap-1.5">
-            <Eye className="h-3.5 w-3.5 text-[#00FF90]" />
+            <Eye className="h-3.5 w-3.5 text-primary" />
             <span>{article.views.toLocaleString()}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Clock className="h-3.5 w-3.5 text-[#00FF90]" />
+            <Clock className="h-3.5 w-3.5 text-primary" />
             <span>{article.readingTime}</span>
           </div>
         </div>

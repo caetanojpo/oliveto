@@ -78,7 +78,7 @@ function FilterButton({ label, active, onClick }: { label: string, active: boole
       onClick={onClick}
       className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
         active
-          ? 'bg-[#00FF90] text-black shadow-lg shadow-[#00FF90]/20'
+          ? 'bg-primary text-black shadow-lg shadow-primary/20'
           : 'text-neutral-400 hover:text-white hover:bg-white/5'
       }`}
     >

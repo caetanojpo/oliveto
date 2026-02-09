@@ -36,7 +36,7 @@ export function RecentLeads({ data, isLoading }: RecentLeadsProps) {
         <h2 className="text-lg font-semibold text-white">Leads Recentes</h2>
         <Link
           href={ROUTES.ADMIN.DASHBOARD.CONTATOS || "#"}
-          className="text-sm text-[#00FF90] hover:underline flex items-center gap-1"
+          className="text-sm text-primary hover:underline flex items-center gap-1"
         >
           Ver todos <ChevronRight className="w-4 h-4" />
         </Link>

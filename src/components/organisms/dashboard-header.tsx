@@ -66,7 +66,7 @@ export function DashboardHeader({
               <button className="relative p-2 hover:bg-white/10 rounded-xl transition-colors outline-none">
                 <Bell className="w-5 h-5" />
                 {unreadCount > 0 && (
-                  <span className="absolute top-1 right-1 w-2 h-2 bg-[#00FF90] rounded-full animate-pulse" />
+                  <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full animate-pulse" />
                 )}
               </button>
             </PopoverTrigger>
@@ -81,7 +81,7 @@ export function DashboardHeader({
                     onClick={() => setIsPopoverOpen(false)}
                     className="block w-full text-left p-3 hover:bg-white/5 rounded-lg text-sm transition-colors"
                   >
-                    Você tem <span className="text-[#00FF90] font-bold">{unreadCount}</span> novos contatos.
+                    Você tem <span className="text-primary font-bold">{unreadCount}</span> novos contatos.
                   </Link>
                 ) : (
                   <p className="p-4 text-center text-sm text-neutral-500">
@@ -98,10 +98,10 @@ export function DashboardHeader({
               <Button
                 variant="ghost"
                 size="icon-lg"
-                className="bg-[#00FF90]/20 rounded-full hover:bg-[#00FF90]/30"
+                className="bg-primary/20 rounded-full hover:bg-primary/30"
                 aria-label="Perfil do usuário"
               >
-                <User className="w-5 h-5 text-[#00FF90]" />
+                <User className="w-5 h-5 text-primary" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 bg-[#111] border-white/10 text-white">

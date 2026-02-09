@@ -7,7 +7,7 @@ export function AboutSection() {
     <section id="sobre" className="px-8 py-16 md:px-16 md:py-24 bg-secondary">
       <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
         <div>
-          <p className="text-[#00FF90] text-lg md:text-xl leading-relaxed mb-6">
+          <p className="text-primary text-lg md:text-xl leading-relaxed mb-6">
             {aboutContent.mainText}
           </p>
           <p className="text-gray-400 leading-relaxed">
