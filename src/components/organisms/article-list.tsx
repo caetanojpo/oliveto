@@ -1,6 +1,14 @@
 import { ArticleResponseDTO } from "@/lib/types/article";
 import { memo } from "react";
 import { ArticleListItem } from "@/components/molecules/article-list-item";
+import { FileText } from "lucide-react";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/atoms/empty";
 
 interface ArticleListProps {
   articles: ArticleResponseDTO[];
@@ -23,15 +31,33 @@ export const ArticleList = memo(function ArticleList({ articles, onView, onEdit,
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
-            {articles.map((article) => (
-              <ArticleListItem
-                key={article.id}
-                article={article}
-                onView={onView}
-                onEdit={onEdit}
-                onDelete={onDelete}
-              />
-            ))}
+            {articles.length === 0 ? (
+               <tr>
+                 <td colSpan={4} className="py-12 text-center text-neutral-500">
+                   <Empty>
+                     <EmptyHeader>
+                       <EmptyMedia>
+                         <FileText className="size-10 text-neutral-500" />
+                       </EmptyMedia>
+                       <EmptyTitle>Nenhum artigo encontrado</EmptyTitle>
+                       <EmptyDescription>
+                         Você ainda não criou nenhum artigo.
+                       </EmptyDescription>
+                     </EmptyHeader>
+                   </Empty>
+                 </td>
+               </tr>
+            ) : (
+              articles.map((article) => (
+                <ArticleListItem
+                  key={article.id}
+                  article={article}
+                  onView={onView}
+                  onEdit={onEdit}
+                  onDelete={onDelete}
+                />
+              ))
+            )}
           </tbody>
         </table>
       </div>

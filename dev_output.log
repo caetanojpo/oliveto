@@ -1,0 +1,14 @@
+
+> oliveto-contabilidade@0.1.0 dev /app
+> next dev
+
+⚠ Specified "headers" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+▲ Next.js 16.1.5 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+
+✓ Starting...
+✓ Ready in 691ms
+○ Compiling /test-palette ...
+ GET /test-palette/ 200 in 5.2s (compile: 4.8s, render: 429ms)
+✓ Compiled in 128ms
