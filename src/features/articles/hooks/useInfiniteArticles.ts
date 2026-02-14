@@ -2,6 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { articlesApi, PaginatedResponse } from "../api/articles.api";
 import { ArticleResponseDTO } from "@/lib/types/article";
 import { QUERY_CONFIG } from "@/lib/config/query";
+import { useMemo } from "react";
 
 export const useInfiniteArticles = (
   firmId?: string,
@@ -33,15 +34,28 @@ export const useInfiniteArticles = (
     initialData,
   });
 
-  const articles = data?.pages.flatMap((page) => page.content) || [];
+  // Performance: Memoize articles array to prevent O(N) flatMap on every render
+  const articles = useMemo(() =>
+    data?.pages.flatMap((page) => page.content) || [],
+    [data?.pages]
+  );
+
   const totalElements = data?.pages[0]?.page.totalElements || 0;
 
-  return {
+  // Performance: Memoize return object to prevent unnecessary re-renders in consumers
+  return useMemo(() => ({
     articles,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
     isLoading,
     totalElements,
-  };
+  }), [
+    articles,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    totalElements
+  ]);
 };
