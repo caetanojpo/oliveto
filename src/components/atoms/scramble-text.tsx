@@ -22,6 +22,16 @@ export function ScrambleText({
   const startTimeRef = useRef<number>(0);
 
   useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      setDisplayText(text);
+      return;
+    }
+
     let timeoutId: NodeJS.Timeout;
     const currentTextRef = { value: displayText };
 
@@ -88,5 +98,10 @@ export function ScrambleText({
     };
   }, [text, duration, delay]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <span className={className}>{displayText}</span>;
+  return (
+    <span className={className}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">{displayText}</span>
+    </span>
+  );
 }
