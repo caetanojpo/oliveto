@@ -18,10 +18,25 @@ export function ScrambleText({
   delay = 0,
 }: ScrambleTextProps) {
   const [displayText, setDisplayText] = useState(text);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const frameRef = useRef<number>(0);
   const startTimeRef = useRef<number>(0);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduceMotion(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => setReduceMotion(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      setDisplayText(text);
+      return;
+    }
+
     let timeoutId: NodeJS.Timeout;
     const currentTextRef = { value: displayText };
 
@@ -86,7 +101,12 @@ export function ScrambleText({
       if (frameRef.current) cancelAnimationFrame(frameRef.current);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [text, duration, delay]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [text, duration, delay, reduceMotion]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return <span className={className}>{displayText}</span>;
+  return (
+    <span className={className}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">{displayText}</span>
+    </span>
+  );
 }

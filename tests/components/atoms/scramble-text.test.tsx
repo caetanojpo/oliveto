@@ -6,10 +6,24 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 describe('ScrambleText Performance', () => {
   beforeEach(() => {
     vi.useFakeTimers();
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: vi.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(), // deprecated
+        removeListener: vi.fn(), // deprecated
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+    });
   });
 
   afterEach(() => {
     vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   it('renders efficiently during animation', async () => {
@@ -32,7 +46,7 @@ describe('ScrambleText Performance', () => {
     });
 
     // Check final state
-    expect(screen.getByText('Hello World')).toBeTruthy();
+    expect(screen.getAllByText('Hello World').length).toBeGreaterThan(0);
 
     console.log(`Render count (commits): ${renderCount}`);
     console.log(`RAF calls: ${rafSpy.mock.calls.length}`);

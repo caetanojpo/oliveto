@@ -21,3 +21,7 @@
 ## 2025-02-25 - Slot Component Content Injection
 **Learning:** Radix UI's `Slot` component (used when `asChild` is true) strictly expects a single child and merges props, making it impossible to inject additional content like a loading spinner directly.
 **Action:** When implementing `loading` states in components supporting `asChild`, condition the spinner rendering on `!asChild` and document this limitation, or refactor to wrap the child manually if needed.
+
+## 2025-02-26 - Accessible Text Animations
+**Learning:** Text animations like "scrambling" are disastrous for screen readers as they announce rapidly changing, meaningless characters. Additionally, they can trigger vestibular disorders.
+**Action:** Implement dual rendering: a visually hidden (`sr-only`) static element for screen readers, and an `aria-hidden="true"` animated element. Also, respect `prefers-reduced-motion` by disabling the animation entirely.
