@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import Image from "next/image";
-import { Loader2 } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/atoms/button";
 import { FormField } from "@/components/atoms/form-field";
 import { LoginRequest, LoginSchema } from "@/features/auth/types/auth.types";
 import { useLogin } from "@/features/auth/hooks/useLogin";
@@ -82,32 +83,22 @@ export function LoginForm({ setIsLoggingIn }: LoginFormProps) {
         {/*  Esqueceu a senha?*/}
         {/*</Link>*/}
 
-        <button
+        <Button
           type="submit"
           disabled={isPending}
-          className="w-full mt-4 py-4 bg-primary cursor-pointer text-black font-semibold rounded-lg hover:bg-primary-dark transition-colors flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
+          loading={isPending}
+          className="w-full mt-4 h-auto py-4 bg-primary text-black font-semibold rounded-lg hover:bg-primary/90 group"
         >
-          {isPending ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
-          ) : (
+          {!isPending && (
             <>
               <span>Entrar</span>
-              <svg
+              <ArrowRight
                 className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+                aria-hidden="true"
+              />
             </>
           )}
-        </button>
+        </Button>
       </form>
 
       {/*<SocialLogin />*/}
@@ -115,21 +106,12 @@ export function LoginForm({ setIsLoggingIn }: LoginFormProps) {
       <div className="mt-10 text-center">
         <Link
           href={ROUTES.PUBLIC.HOME}
-          className="text-gray-500 hover:text-primary transition-colors text-sm inline-flex items-center gap-2"
+          className="text-gray-500 hover:text-primary transition-colors text-sm inline-flex items-center gap-2 group"
         >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
+          <ArrowLeft
+            className="w-4 h-4 transition-transform group-hover:-translate-x-1"
+            aria-hidden="true"
+          />
           Voltar para o site
         </Link>
       </div>
