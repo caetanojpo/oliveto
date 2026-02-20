@@ -9,6 +9,7 @@ import {env} from "@/lib/env";
 import {CategoryBadge} from "@/components/atoms/category-badge";
 import {sanitizeHtml} from "@/lib/utils/sanitizer";
 import { Metadata } from "next";
+import { ReadingProgress } from "@/components/atoms/reading-progress";
 
 /**
  * This function is required for `output: "export"` config.
@@ -103,6 +104,7 @@ export default async function ArtigoPage({
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <ReadingProgress />
       <Header />
 
       {/* Green bar */}
