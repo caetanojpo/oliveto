@@ -21,8 +21,8 @@ describe('Pagination', () => {
       </Pagination>
     )
 
-    expect(screen.getByLabelText('Go to previous page')).toBeDefined()
-    expect(screen.getByLabelText('Go to next page')).toBeDefined()
+    expect(screen.getByLabelText('Ir para a página anterior')).toBeDefined()
+    expect(screen.getByLabelText('Ir para a próxima página')).toBeDefined()
     expect(screen.getByText('1')).toBeDefined()
   })
 })
