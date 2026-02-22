@@ -15,6 +15,9 @@ export function WhatsAppButton() {
     <div className="fixed bottom-6 right-6 z-50">
       {/* Popup */}
       <div
+        role="dialog"
+        aria-modal="false"
+        aria-label="Chat do WhatsApp"
         aria-hidden={!isOpen}
         className={cn(
           "absolute bottom-20 right-0 w-72 bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-200 ease-in-out",
@@ -64,6 +67,7 @@ export function WhatsAppButton() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Iniciar conversa no WhatsApp (abre em nova aba)"
             className="block w-full bg-whatsapp text-white text-center py-3 rounded-lg font-medium hover:bg-whatsapp-hover transition-all duration-200 ease-in-out"
           >
             Iniciar Conversa
@@ -84,7 +88,7 @@ export function WhatsAppButton() {
 
         {/* Pulse Animation */}
         <span
-          className="absolute w-full h-full rounded-full bg-whatsapp animate-ping opacity-30"
+          className="absolute w-full h-full rounded-full bg-whatsapp animate-ping opacity-30 motion-reduce:hidden"
           aria-hidden="true"
         />
 
