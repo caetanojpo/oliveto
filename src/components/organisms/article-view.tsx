@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { ArrowLeft, Tag, User } from "lucide-react";
 import Image from "next/image";
+import { useMemo } from "react";
 
 interface ArticleViewProps {
   article: ArticleResponseDTO;
@@ -11,6 +12,13 @@ interface ArticleViewProps {
 }
 
 export function ArticleView({ article, onBack }: ArticleViewProps) {
+  // Performance: Memoize potentially expensive HTML sanitization to avoid
+  // re-parsing on every render (e.g. when parent re-renders).
+  const sanitizedContent = useMemo(
+    () => (article.content ? sanitizeHtml(article.content) : ""),
+    [article.content]
+  );
+
   return (
     <div className="space-y-6">
       {/* Header / Back Button */}
@@ -100,7 +108,7 @@ export function ArticleView({ article, onBack }: ArticleViewProps) {
 
           {/* Content */}
           <div className="prose prose-invert max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.content)  || '' }} />
+            <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
           </div>
         </div>
       </div>
