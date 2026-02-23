@@ -25,6 +25,7 @@ const CSP = getCsp(isDev);
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://olivetocontabilidade.com"),
+  referrer: "strict-origin-when-cross-origin",
   title: {
     default: "Oliveto | Perícia Contábil, Auditoria e Consultoria Empresarial",
     template: "%s | Oliveto Contabilidade",
@@ -108,6 +109,7 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <meta httpEquiv="Content-Security-Policy" content={CSP} />
+        <meta httpEquiv="x-dns-prefetch-control" content="off" />
       </head>
       <body
         className={`${golos.variable} ${outfit.variable} font-sans antialiased`}

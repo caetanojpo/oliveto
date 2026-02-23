@@ -10,18 +10,13 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  headers: async () => [
-    {
-      source: "/:path*",
-      headers: [
-        {
-          key: "Content-Security-Policy",
-          value: getCsp(isDev),
-        },
-        ...getSecurityHeaders(),
-      ],
-    },
-  ],
+  /*
+   * Custom headers in next.config.mjs are ineffective for static exports (output: "export").
+   * Security headers are instead managed via:
+   * 1. Meta tags in src/app/layout.tsx (for CSP, Referrer-Policy, and DNS-prefetch)
+   * 2. .htaccess for Apache environments
+   * 3. vercel.json for Vercel deployments
+   */
 };
 
 export default nextConfig;
