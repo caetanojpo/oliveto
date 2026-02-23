@@ -10,5 +10,5 @@ export function getCsp(isDev, apiUrl) {
   }`;
   return `default-src 'self'; script-src 'self' 'unsafe-inline'${
     isDev ? " 'unsafe-eval'" : ""
-  } https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; ${connectSrc}; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;`;
+  } https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; ${connectSrc}; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;`;
 }
