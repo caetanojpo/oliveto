@@ -7,7 +7,7 @@ describe('ScrambleText Performance & Accessibility', () => {
     vi.useFakeTimers();
     // Mock requestAnimationFrame
     vi.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
-      return setTimeout(() => cb(performance.now()), 16); // Simulate 60fps
+      return setTimeout(() => cb(performance.now()), 16) as unknown as number; // Simulate 60fps
     });
     vi.spyOn(window, 'cancelAnimationFrame').mockImplementation((id) => {
       clearTimeout(id);

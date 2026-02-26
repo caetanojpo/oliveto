@@ -86,6 +86,9 @@ export function ScrambleText({
     const targetLength = targetChars.length;
     const charsLength = CHARS.length;
 
+    // Optimization: Pre-allocate array to avoid allocation in every animation frame
+    const resultBuffer = new Array(targetLength);
+
     const startAnimation = () => {
       startTimeRef.current = performance.now();
 
@@ -109,9 +112,9 @@ export function ScrambleText({
 
         lastFixedCharsCount = fixedCharsCount;
 
-        // Optimization: Use Array and join instead of string concatenation in a loop
+        // Optimization: Reuse pre-allocated array and join instead of string concatenation
         // to reduce garbage collection of intermediate strings during animation frames
-        const result = new Array(targetLength);
+        const result = resultBuffer;
 
         for (let i = 0; i < targetLength; i++) {
           const char = targetChars[i];

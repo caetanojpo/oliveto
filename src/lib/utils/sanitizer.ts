@@ -1,15 +1,14 @@
 import DOMPurify from "isomorphic-dompurify";
 
-// Add a hook to enforce rel="noopener noreferrer" for links with target attributes
-// that open new contexts (e.g., _blank, named windows). This prevents reverse tabnabbing attacks.
+// Add a hook to enforce rel="noopener noreferrer" for links opening in a new context
+// This prevents reverse tabnabbing attacks (including named windows).
 DOMPurify.addHook("afterSanitizeAttributes", (node) => {
   if (node.tagName === "A" && node.hasAttribute("target")) {
-    const target = node.getAttribute("target")?.toLowerCase();
-    // Safe targets that don't open a new browsing context (or open in current context)
+    const target = node.getAttribute("target")?.toLowerCase() || "";
+    // These targets do NOT open a new browsing context that requires protection
     const safeTargets = ["_self", "_parent", "_top"];
 
-    // If target is NOT safe (e.g. _blank or named window), enforce protection
-    if (target && !safeTargets.includes(target)) {
+    if (!safeTargets.includes(target)) {
       const rel = node.getAttribute("rel") || "";
       const parts = rel.split(/\s+/).filter(Boolean);
 
@@ -88,11 +87,17 @@ export function sanitizeHtml(content: string | undefined | null): string {
       "src", "alt", "title", "width", "height",
       "align", "valign", "colspan", "rowspan"
     ],
-    // Force rel="noopener noreferrer" for external links if target="_blank" is used
-    // This is enforced by the afterSanitizeAttributes hook above.
-    ADD_ATTR: ["target"],
+    // ADD_ATTR: ["target"] is redundant as it's in ALLOWED_ATTR
+
+    // Explicitly forbid potentially dangerous tags and attributes
     // Stripping style attribute to prevent CSS-based XSS (e.g. background-image: javascript:...)
-    FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "style"],
-    FORBID_ATTR: ["onmouseover", "onload", "onclick", "onerror"],
+    FORBID_TAGS: [
+      "script", "iframe", "object", "embed", "form", "style",
+      "base", "head", "link", "meta", "title"
+    ],
+    FORBID_ATTR: [
+      "onmouseover", "onload", "onclick", "onerror",
+      "action", "formaction"
+    ],
   });
 }

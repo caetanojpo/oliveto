@@ -37,3 +37,7 @@
 ## 2025-02-28 - Component Localization
 **Learning:** Default UI components (like Pagination, Dialog) often contain hardcoded English strings and ARIA labels. In a non-English application (Portuguese), this creates a disjointed and inaccessible experience for users, particularly those relying on screen readers.
 **Action:** Audit and localize all default strings and ARIA labels in reusable UI components to ensure they match the application's primary language.
+
+## 2025-05-22 - Escape Key Interaction Pattern
+**Learning:** Custom floating widgets (like `WhatsAppButton`) often miss the standard `Escape` key interaction to close them. This creates a trap for keyboard users who navigate to the widget but cannot easily dismiss it without tabbing away.
+**Action:** Always implement a global `keydown` listener for `Escape` in `useEffect` for custom interactive overlays to ensure they are dismissible via keyboard.

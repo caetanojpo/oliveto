@@ -70,11 +70,14 @@ export function ArticleView({ article, onBack }: ArticleViewProps) {
           {/* Cover Image */}
           {article.imageUrl && (
             <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden border border-white/10">
+              {/* Optimization: Use sizes to prevent downloading oversized images and priority for LCP */}
               <Image
                 src={article.imageUrl}
                 alt={article.title}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 className="object-cover"
+                priority
               />
             </div>
           )}
