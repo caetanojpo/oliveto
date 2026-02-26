@@ -1,11 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MessageCircle, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   const phoneNumber = "5543991231726";
   const message =
@@ -84,7 +95,7 @@ export function WhatsAppButton() {
 
         {/* Pulse Animation */}
         <span
-          className="absolute w-full h-full rounded-full bg-whatsapp animate-ping opacity-30"
+          className="absolute w-full h-full rounded-full bg-whatsapp animate-ping opacity-30 motion-reduce:hidden"
           aria-hidden="true"
         />
 

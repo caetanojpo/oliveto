@@ -63,4 +63,24 @@ describe('WhatsAppButton', () => {
     expect(popupContainer?.className).not.toContain('invisible')
     expect(popupContainer?.getAttribute('aria-hidden')).toBe('false')
   })
+
+  it('closes the popup when Escape key is pressed', () => {
+    render(<WhatsAppButton />)
+
+    const mainButton = screen.getByRole('button', { name: /Abrir chat do WhatsApp/i })
+
+    // Open popup
+    fireEvent.click(mainButton)
+    expect(mainButton.getAttribute('aria-expanded')).toBe('true')
+
+    // Press Escape
+    fireEvent.keyDown(window, { key: 'Escape' })
+
+    // Verify it closed
+    expect(mainButton.getAttribute('aria-expanded')).toBe('false')
+
+    const popupText = screen.getByText('Oliveto')
+    const popupContainer = popupText.closest('.absolute')
+    expect(popupContainer?.className).toContain('invisible')
+  })
 })

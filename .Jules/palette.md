@@ -37,3 +37,7 @@
 ## 2025-02-28 - Component Localization
 **Learning:** Default UI components (like Pagination, Dialog) often contain hardcoded English strings and ARIA labels. In a non-English application (Portuguese), this creates a disjointed and inaccessible experience for users, particularly those relying on screen readers.
 **Action:** Audit and localize all default strings and ARIA labels in reusable UI components to ensure they match the application's primary language.
+
+## 2026-02-26 - Floating Widget Accessibility
+**Learning:** Floating action buttons (like chat widgets) often lack keyboard accessibility, specifically the ability to close the expanded state with the Escape key, which is a standard expectation for modals and popovers. Also, continuous pulse animations can be distracting and should respect reduced motion preferences.
+**Action:** Always implement an Escape key listener for custom floating widgets and use `motion-reduce:hidden` or similar utilities for decorative continuous animations.
