@@ -1,24 +1,31 @@
 import DOMPurify from "isomorphic-dompurify";
 
-// Add a hook to enforce rel="noopener noreferrer" for links with target="_blank"
-// This prevents reverse tabnabbing attacks.
+// Add a hook to enforce rel="noopener noreferrer" for links with target attributes
+// that open new contexts (e.g., _blank, named windows). This prevents reverse tabnabbing attacks.
 DOMPurify.addHook("afterSanitizeAttributes", (node) => {
-  if (node.tagName === "A" && node.getAttribute("target")?.toLowerCase() === "_blank") {
-    const rel = node.getAttribute("rel") || "";
-    const parts = rel.split(/\s+/).filter(Boolean);
+  if (node.tagName === "A" && node.hasAttribute("target")) {
+    const target = node.getAttribute("target")?.toLowerCase();
+    // Safe targets that don't open a new browsing context (or open in current context)
+    const safeTargets = ["_self", "_parent", "_top"];
 
-    let changed = false;
-    if (!parts.includes("noopener")) {
-      parts.push("noopener");
-      changed = true;
-    }
-    if (!parts.includes("noreferrer")) {
-      parts.push("noreferrer");
-      changed = true;
-    }
+    // If target is NOT safe (e.g. _blank or named window), enforce protection
+    if (target && !safeTargets.includes(target)) {
+      const rel = node.getAttribute("rel") || "";
+      const parts = rel.split(/\s+/).filter(Boolean);
 
-    if (changed) {
-      node.setAttribute("rel", parts.join(" "));
+      let changed = false;
+      if (!parts.includes("noopener")) {
+        parts.push("noopener");
+        changed = true;
+      }
+      if (!parts.includes("noreferrer")) {
+        parts.push("noreferrer");
+        changed = true;
+      }
+
+      if (changed) {
+        node.setAttribute("rel", parts.join(" "));
+      }
     }
   }
 
