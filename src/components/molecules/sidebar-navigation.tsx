@@ -30,7 +30,7 @@ export function SidebarNavigation() {
             key={item.label}
             href={item.href}
             className={cn(
-              "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group",
+              "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50",
               isActive
                 ? "bg-primary/10 text-primary"
                 : "text-neutral-400 hover:bg-white/5 hover:text-white"

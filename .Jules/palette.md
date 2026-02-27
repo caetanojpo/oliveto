@@ -41,3 +41,7 @@
 ## 2025-05-22 - Escape Key Interaction Pattern
 **Learning:** Custom floating widgets (like `WhatsAppButton`) often miss the standard `Escape` key interaction to close them. This creates a trap for keyboard users who navigate to the widget but cannot easily dismiss it without tabbing away.
 **Action:** Always implement a global `keydown` listener for `Escape` in `useEffect` for custom interactive overlays to ensure they are dismissible via keyboard.
+
+## 2025-05-23 - Custom Interactive Element Focus
+**Learning:** Custom interactive elements (like sidebars and floating buttons) often miss the standard `focus-visible` styles present in the base `Button` component, leaving keyboard users without visual guidance.
+**Action:** Apply standard `outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50` classes to all custom clickable elements to maintain accessibility and visual consistency.
