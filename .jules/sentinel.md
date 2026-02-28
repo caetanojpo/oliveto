@@ -32,3 +32,8 @@
 **Vulnerability:** Security headers (CSP, HSTS, X-Frame-Options) were defined in both `next.config.mjs` and `.htaccess`, but with inconsistencies (e.g., missing `upgrade-insecure-requests`, conflicting frame options). This creates potential security gaps depending on the deployment environment (Vercel vs. Apache).
 **Learning:** When a project supports multiple deployment targets (e.g., Static Export via Apache and Vercel Edge), security configurations must be manually synchronized across all configuration files (`next.config.mjs`, `vercel.json`, `.htaccess`).
 **Prevention:** Regularly audit all configuration files for consistency. Ideally, generate environment-specific configs from a single source of truth during the build process.
+
+## 2026-02-27 - Input Length Constraints in Lead Management (Defense in Depth)
+**Vulnerability:** The `LeadEditModal` form inputs lacked `maxLength` constraints matching their respective Zod schema definitions (`UpdateLeadSchema`). This allowed excessively large text payloads to be processed client-side before failing validation, increasing the risk of client-side performance degradation or potential DoS.
+**Learning:** Client-side validation relies on HTML attributes like `maxLength` as a critical first line of defense before schema validation or server processing.
+**Prevention:** Ensure every `<input>` field explicitly mirrors its corresponding backend or schema validation constraints directly in the HTML.
