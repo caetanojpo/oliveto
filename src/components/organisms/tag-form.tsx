@@ -55,8 +55,9 @@ export function TagForm({ onSubmit, isPending, initialData, onCancel }: TagFormP
             type="button"
             onClick={onCancel}
             className="p-2 hover:bg-white/10 rounded-lg transition-colors text-neutral-400 hover:text-white"
+            aria-label="Voltar"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-5 h-5" aria-hidden="true" />
           </button>
           <h2 className="text-xl font-semibold">
             {initialData ? "Editar Tag" : "Nova Tag"}
