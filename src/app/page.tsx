@@ -24,7 +24,7 @@ export default function Home() {
       <HowItWorksSection />
       <ServicesSection />
       <ArticlesCarousel />
-      {/* <FaqSection /> */}
+      <FaqSection />
       <TestimonialsSection />
       {/* <PartnersSection /> */}
       {/* <NewsletterSection /> */}
