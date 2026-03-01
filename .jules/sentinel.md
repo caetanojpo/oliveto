@@ -32,3 +32,8 @@
 **Vulnerability:** Security headers (CSP, HSTS, X-Frame-Options) were defined in both `next.config.mjs` and `.htaccess`, but with inconsistencies (e.g., missing `upgrade-insecure-requests`, conflicting frame options). This creates potential security gaps depending on the deployment environment (Vercel vs. Apache).
 **Learning:** When a project supports multiple deployment targets (e.g., Static Export via Apache and Vercel Edge), security configurations must be manually synchronized across all configuration files (`next.config.mjs`, `vercel.json`, `.htaccess`).
 **Prevention:** Regularly audit all configuration files for consistency. Ideally, generate environment-specific configs from a single source of truth during the build process.
+
+## 2026-02-14 - Input Length Validation Gap (UpdateLeadSchema)
+**Vulnerability:** Missing `maxLength` constraints on the Lead Edit form fields (Name, Email, Phone). While server-side and client-side Zod validation limits existed (`UpdateLeadSchema`), the HTML form elements defaulted to unlimited input.
+**Learning:** HTML inputs without explicit `maxLength` properties allow users to paste or type massive payloads, relying entirely on JavaScript form validation or server-side checks. This creates an unhandled scenario where extreme input might cause DoS, UI freezes, or bypass validations before Zod handles it.
+**Prevention:** As part of defense in depth, always align Zod schema length limits with HTML `maxLength` attributes directly on input components.
