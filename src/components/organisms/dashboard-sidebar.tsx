@@ -44,8 +44,9 @@ export function DashboardSidebar({ isOpen, onClose }: DashboardSidebarProps) {
               <button
                 onClick={onClose}
                 className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
+                aria-label="Fechar menu"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
           </div>
