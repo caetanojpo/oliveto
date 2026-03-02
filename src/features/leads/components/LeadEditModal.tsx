@@ -71,10 +71,12 @@ export function LeadEditModal({ lead, onClose }: LeadEditModalProps) {
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
+          {/* Security: maxLength limits prevent excessive payload/DoS attacks */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-neutral-400">Nome</label>
             <input
               {...register("name")}
+              maxLength={100}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 focus:outline-none focus:border-primary/50 transition-colors"
               placeholder="Nome do lead"
             />
@@ -87,6 +89,7 @@ export function LeadEditModal({ lead, onClose }: LeadEditModalProps) {
             <label className="text-sm font-medium text-neutral-400">Email</label>
             <input
               {...register("email")}
+              maxLength={100}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 focus:outline-none focus:border-primary/50 transition-colors"
               placeholder="Email do lead"
             />
@@ -99,6 +102,7 @@ export function LeadEditModal({ lead, onClose }: LeadEditModalProps) {
             <label className="text-sm font-medium text-neutral-400">Telefone</label>
             <input
               {...register("phone")}
+              maxLength={20}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 focus:outline-none focus:border-primary/50 transition-colors"
               placeholder="Telefone do lead"
             />
