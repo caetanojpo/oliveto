@@ -26,21 +26,35 @@ function AnimatedCounter({
     if (!inView) return;
 
     const duration = 2000;
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
+    let startTimestamp: number | null = null;
+    let animationFrameId: number;
 
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= value) {
-        setCount(value);
-        clearInterval(timer);
+    // ⚡ Bolt: Replaced setInterval with requestAnimationFrame
+    // 💡 What: Calculates progress based on elapsed time rather than fixed intervals.
+    // 🎯 Why: setInterval ignores frame rate and can cause jank or dropped frames.
+    //         requestAnimationFrame syncs with the screen refresh rate, providing
+    //         buttery smooth animations. It also pauses when the tab is inactive,
+    //         saving battery and CPU resources.
+    // 📊 Impact: Eliminates stutter in number counting animations; zero main thread
+    //            blocking during background execution.
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+
+      // Calculate current value based on progress (linear easing)
+      const current = Math.floor(progress * value);
+      setCount(current);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(step);
       } else {
-        setCount(Math.floor(current));
+        setCount(value);
       }
-    }, duration / steps);
+    };
 
-    return () => clearInterval(timer);
+    animationFrameId = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(animationFrameId);
   }, [inView, value]);
 
   return (
