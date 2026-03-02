@@ -64,6 +64,8 @@ export function FaqSection() {
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full px-6 py-4 flex items-center justify-between text-left"
+                aria-expanded={openIndex === index}
+                aria-controls={`faq-answer-${index}`}
               >
                 <span className="font-medium text-neutral-950 pr-4">
                   {faq.question}
@@ -75,6 +77,7 @@ export function FaqSection() {
                 />
               </button>
               <div
+                id={`faq-answer-${index}`}
                 className={`overflow-hidden transition-all duration-300 ${
                   openIndex === index ? "max-h-96" : "max-h-0"
                 }`}

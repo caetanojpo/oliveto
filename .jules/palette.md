@@ -1,0 +1,3 @@
+## 2024-05-24 - Custom Accordion Accessibility
+**Learning:** Custom accordion components built with simple buttons and collapsible divs are completely invisible to screen readers as interactive toggles unless explicit ARIA attributes are used.
+**Action:** When building or modifying custom accordions that do not use standard primitives (like Radix UI), always ensure the toggle button has `aria-expanded` reflecting its state, and `aria-controls` pointing to the `id` of the content panel it toggles.
