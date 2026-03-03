@@ -52,7 +52,8 @@ describe('ArticleList', () => {
 
     // Check if table rows are rendered (header + 2 rows = 3 rows, but header is in thead)
     // We can count buttons or something.
-    const viewButtons = screen.getAllByTitle('Visualizar');
+    // Use aria-label to find buttons since title attribute was removed in favor of Radix Tooltips
+    const viewButtons = screen.getAllByLabelText(/Visualizar artigo/);
     expect(viewButtons).toHaveLength(2);
   });
 
