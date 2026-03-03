@@ -3,6 +3,7 @@ import { ArticleResponseDTO, ArticleStatus } from "@/lib/types/article";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Button } from "@/components/atoms/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/atoms/tooltip";
 import { memo } from "react";
 
 interface ArticleListItemProps {
@@ -53,36 +54,48 @@ export const ArticleListItem = memo(function ArticleListItem({ article, onView, 
       </td>
       <td className="px-6 py-4">
         <div className="flex items-center justify-end gap-2">
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            className="hover:bg-white/10 text-neutral-400 hover:text-white rounded-lg"
-            aria-label={`Visualizar artigo: ${article.title}`}
-            title="Visualizar"
-            onClick={() => onView(article)}
-          >
-            <Eye className="w-4 h-4" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            className="hover:bg-white/10 text-neutral-400 hover:text-white rounded-lg"
-            aria-label={`Editar artigo: ${article.title}`}
-            title="Editar"
-            onClick={() => onEdit(article)}
-          >
-            <Edit3 className="w-4 h-4" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            className="hover:bg-red-500/10 text-red-400 hover:text-red-300 rounded-lg"
-            aria-label={`Excluir artigo: ${article.title}`}
-            title="Excluir"
-            onClick={() => onDelete(article.id)}
-          >
-            <Trash2 className="w-4 h-4" />
-          </Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                className="hover:bg-white/10 text-neutral-400 hover:text-white rounded-lg"
+                aria-label={`Visualizar artigo: ${article.title}`}
+                onClick={() => onView(article)}
+              >
+                <Eye className="w-4 h-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Visualizar</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                className="hover:bg-white/10 text-neutral-400 hover:text-white rounded-lg"
+                aria-label={`Editar artigo: ${article.title}`}
+                onClick={() => onEdit(article)}
+              >
+                <Edit3 className="w-4 h-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Editar</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                className="hover:bg-red-500/10 text-red-400 hover:text-red-300 rounded-lg"
+                aria-label={`Excluir artigo: ${article.title}`}
+                onClick={() => onDelete(article.id)}
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Excluir</TooltipContent>
+          </Tooltip>
         </div>
       </td>
     </tr>
