@@ -66,10 +66,11 @@ export function TagForm({ onSubmit, isPending, initialData, onCancel }: TagFormP
 
       <div className="bg-surface border border-white/10 rounded-2xl p-6 space-y-6">
         <div>
-          <label className="block text-sm text-neutral-400 mb-3">
+          <label htmlFor="tag-name" className="block text-sm text-neutral-400 mb-3">
             Nome da Tag
           </label>
           <input
+            id="tag-name"
             type="text"
             {...register("name")}
             placeholder="Ex: Tributário, Agro, Notícias..."
@@ -82,10 +83,11 @@ export function TagForm({ onSubmit, isPending, initialData, onCancel }: TagFormP
         </div>
 
         <div>
-          <label className="block text-sm text-neutral-400 mb-3">
+          <label htmlFor="tag-description" className="block text-sm text-neutral-400 mb-3">
             Descrição (Opcional)
           </label>
           <textarea
+            id="tag-description"
             {...register("description")}
             placeholder="Breve descrição sobre a tag..."
             rows={3}
@@ -95,10 +97,11 @@ export function TagForm({ onSubmit, isPending, initialData, onCancel }: TagFormP
         </div>
 
         <div>
-          <label className="block text-sm text-neutral-400 mb-3">Cor</label>
+          <label htmlFor="tag-color" className="block text-sm text-neutral-400 mb-3">Cor</label>
           <div className="flex items-center gap-4">
             <input
               type="color"
+              aria-label="Escolher cor da tag"
               value={watchedColor}
               onChange={(e) =>
                 setValue("color", e.target.value, { shouldValidate: true })
@@ -106,6 +109,7 @@ export function TagForm({ onSubmit, isPending, initialData, onCancel }: TagFormP
               className="w-12 h-12 rounded-lg cursor-pointer bg-transparent border-none"
             />
             <input
+              id="tag-color"
               type="text"
               {...register("color")}
               placeholder="#000000"
