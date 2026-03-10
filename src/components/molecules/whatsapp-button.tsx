@@ -67,7 +67,7 @@ export function WhatsAppButton() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white/80 hover:text-white transition-all duration-200 ease-in-out cursor-pointer"
+              className="text-white/80 hover:text-white transition-all duration-200 ease-in-out cursor-pointer outline-none focus-visible:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50 rounded-md"
               aria-label="Fechar chat"
             >
               <X className="w-5 h-5" aria-hidden="true" />
@@ -91,7 +91,7 @@ export function WhatsAppButton() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full bg-whatsapp text-white text-center py-3 rounded-lg font-medium hover:bg-whatsapp-hover transition-all duration-200 ease-in-out"
+            className="block w-full bg-whatsapp text-white text-center py-3 rounded-lg font-medium hover:bg-whatsapp-hover transition-all duration-200 ease-in-out outline-none focus-visible:ring-2 focus-visible:ring-whatsapp/50"
           >
             Iniciar Conversa
           </a>
@@ -101,7 +101,7 @@ export function WhatsAppButton() {
       {/* Main Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-whatsapp rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-200 ease-in-out relative cursor-pointer"
+        className="w-14 h-14 bg-whatsapp rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-200 ease-in-out relative cursor-pointer outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
         aria-label={
           isOpen
             ? "Fechar chat do WhatsApp"
