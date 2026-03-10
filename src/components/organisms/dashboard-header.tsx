@@ -63,7 +63,10 @@ export function DashboardHeader({
           {/* Notifications */}
           <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
             <PopoverTrigger asChild>
-              <button className="relative p-2 hover:bg-white/10 rounded-xl transition-colors outline-none">
+              <button
+                className="relative p-2 hover:bg-white/10 rounded-xl transition-colors outline-none"
+                aria-label="Notificações"
+              >
                 <Bell className="w-5 h-5" />
                 {unreadCount > 0 && (
                   <span className="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full animate-pulse" />
